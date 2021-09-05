@@ -3,7 +3,7 @@
 ## Team Members
 * Javier Pascal Flores A01375925
 * Ricardo David Zambrano Figueroa A01379700
-* Jorge Palacios A01654203
+* Jorge Damián Palacios Hristova A01654203
 ## Ideas
 
 ### First Idea
