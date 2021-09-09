@@ -17,8 +17,11 @@ For this idea we though about a limited scenario, such as a cube or a circle.
 
 ### First Idea
 ---
-### First Idea
+### Third Idea
 ---
+
+For these idea we can make a game like these one [Cluster Trucks](https://www.youtube.com/watch?v=MFPVK_XGzbg)
+but instead of jumping from trucks the player must run in a city skilyne using the enviroment.  
 
 ## Technologies to use
 * WebGL
