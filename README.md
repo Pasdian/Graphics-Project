@@ -15,7 +15,12 @@ For this idea we though about a limited scenario, such as a cube or a circle.
 
 [Lite Version with cute shaders](https://threejs-journey.xyz/)
 
-### First Idea
+### Second Idea
+
+
+For this I thought of make some king of web experience inspirede in the https://my.wizardingworld.com/patronus , where you can complete a test and walking through a forest to discover your patronous. In this example there are complicated parts with particule movement but must of it is in 2D, maybe we could try to do a 3D version. 
+
+
 ---
 ### Third Idea
 ---
