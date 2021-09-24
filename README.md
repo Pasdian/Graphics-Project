@@ -4,30 +4,35 @@
 * Javier Pascal Flores A01375925
 * Ricardo David Zambrano Figueroa A01379700
 * Jorge Damián Palacios Hristova A01654203
-## Ideas
 
-### First Idea
+## Project Definition:
+
+
+This project will present a limited scene in the form of a room with decoration and elements with wich you can interact.
+
+The room aesthetic and theme that we will follow are movie elements and references.
+
+There will be 9 elements with animation:
+
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+
+In addition to the elements with animation there might be some non-animated decorations.
+
+### Example Image
+
+This is the original inspiration for this project, it belongs to [Three.js Journey - Learn WebGL with Three.js](http://threejs-journey.xyz/) website.
+
+![Three.js Room](assets/roomThree.png)
+
 ---
-
-For this idea we though about a limited scenario, such as a cube or a circle.
-
-[Complex Idea](https://threejs.org/examples/#webgl_animation_keyframes)
-
-[Lite Version with cute shaders](https://threejs-journey.xyz/)
-
-### Second Idea
----
-
-For this I thought of make some king of web experience inspirede in the https://my.wizardingworld.com/patronus , where you can complete a test and walking through a forest to discover your patronous. In this example there are complicated parts with particule movement but must of it is in 2D, maybe we could try to do a 3D version. 
-
-
-### Third Idea
----
-
-For these idea we can make a game like these one [Cluster Trucks](https://www.youtube.com/watch?v=MFPVK_XGzbg)
-but instead of jumping from trucks the player must run in a city skilyne using the enviroment.  
-
-For theses idea I thought that it would be a good idea to make like these game or tu use the camera to walk around the environment in 3D, and go around the city with some details that can be acheived  with 3D design 
 
 ## Technologies to use
 * WebGL
@@ -36,4 +41,11 @@ For theses idea I thought that it would be a good idea to make like these game o
 * React/Angular 
 * HTML
 
+## Requirements
 
+* Sketches
+* Elements
+* Description of Interactions
+* Post Processing in JS
+* Effects
+* Each element has to have an interaction
