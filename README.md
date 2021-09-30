@@ -14,9 +14,9 @@ The room aesthetic and theme that we will follow are movie elements and referenc
 
 There will be 9 elements with animation:
 
-1. 
-2. 
-3. 
+1. Thors Hammers that levitates  a little and  there is like thunders around it 
+2. A light saber that extends and retracts with a color red or blue
+3. A spinner like in the movie Inception that when click starts spinning for a random time making a reference like it is a dream
 4. 
 5. 
 6. 
