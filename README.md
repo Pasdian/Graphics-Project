@@ -17,9 +17,9 @@ There will be 9 elements with animation:
 1. Thors Hammers that levitates  a little and  there is like thunders around it 
 2. A light saber that extends and retracts with a color red or blue
 3. A spinner like in the movie Inception that when click starts spinning for a random time making a reference like it is a dream
-4. 
-5. 
-6. 
+4. A Lightbulb that is hanging from a cable, this cable can move and will move if touched directly.
+5. The Tron Bike making the blue traces
+6. The robot that serves butter from Rick & Morty.
 7. 
 8. 
 9. 
