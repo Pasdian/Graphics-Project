@@ -19,15 +19,12 @@ let mapUrl = "../imagenes/checker_large.gif";
 
 let SHADOW_MAP_WIDTH = 4096, SHADOW_MAP_HEIGHT = 4096;
 
-let objTardis = {obj: '../3dModels/Tardis.obj', 
-mtl:'../3dModels/Tardis.mtl'};
-
-let objDelorean = {obj: '../3dModels/delorean2.obj', 
-mtl:'../3dModels/delorean.mtl'};
-
-let objRing = {obj: '../3dModels/ring.obj', 
-mtl:'../3dModels/ring.mtl'};
-
+let objTardis = {obj: '../3dModels/Tardis.obj',  mtl:'../3dModels/Tardis.mtl'};
+let objDelorean = {obj: '../3dModels/delorean2.obj',  mtl:'../3dModels/delorean.mtl'};
+let objRing = {obj: '../3dModels/ring.obj',  mtl:'../3dModels/ring.mtl'};
+let objLightSaber = {obj:'../3dModels/3d-model.obj',   mtl:'../3dModels/3d-model.mtl'};
+let objHammer = {obj:'../3dModels/mjolnirOBJ.obj',  mtl:'../3dModels/mjolnirOBJ.mtl'};
+let objBox = {obj:'../3dModels/aqua.obj', mtl:'../3dModels/aqua.obj'};
 
 
 
@@ -149,7 +146,7 @@ async function loadObjDelorean(objModelUrl, objectList)
         });
         
         object.position.y += 1;
-        object.position.x += 20;
+        object.position.x += -10;
         object.scale.set(0.15, 0.15, 0.15);
 
         objectList.push(object);
@@ -185,7 +182,7 @@ async function loadObjRing(objModelUrl, objectList)
         });
         
         object.position.y += 1;
-        object.position.x += 30;
+        object.position.x += 8;
         object.scale.set(2, 2, 2);
 
         objectList.push(object);
@@ -196,6 +193,116 @@ async function loadObjRing(objModelUrl, objectList)
         onError(err);
     }
 }
+
+
+async function loadObjLight(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.x += 5;
+        object.scale.set(0.01, 0.01, 0.01);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+async function loadObjHammer(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.x += -4;
+        object.scale.set(0.01, 0.01, 0.01);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+
+async function loadObjBox(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.x += 3;
+        object.position.y += 2;
+        object.scale.set(0.9, 0.9, 0.9);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+
 
 function initControls()
 {
@@ -302,6 +409,10 @@ function createScene(canvas)
     loadObjMtl(objTardis, objectList);
     loadObjDelorean(objDelorean, objectList);
     loadObjRing(objRing,objectList);
+
+    loadObjLight(objLightSaber,objectList);
+    loadObjHammer(objHammer,objectList);
+    loadObjBox(objBox,objectList );
 
     // Create a group to hold the objects
     group = new THREE.Object3D;
