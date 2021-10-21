@@ -1,0 +1,13 @@
+# Blender MTL File: 'ring_a.blend'
+# Material Count: 1
+
+newmtl Gold
+Ns 696.960004
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.727582 0.274596
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump -bm 1.000000 ring_a_normal.png
