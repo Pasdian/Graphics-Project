@@ -22,9 +22,18 @@ let SHADOW_MAP_WIDTH = 4096, SHADOW_MAP_HEIGHT = 4096;
 let objTardis = {obj: '../3dModels/Tardis.obj',  mtl:'../3dModels/Tardis.mtl'};
 let objDelorean = {obj: '../3dModels/delorean2.obj',  mtl:'../3dModels/delorean.mtl'};
 let objRing = {obj: '../3dModels/ring.obj',  mtl:'../3dModels/ring.mtl'};
+
 let objLightSaber = {obj:'../3dModels/3d-model.obj',   mtl:'../3dModels/3d-model.mtl'};
 let objHammer = {obj:'../3dModels/mjolnirOBJ.obj',  mtl:'../3dModels/mjolnirOBJ.mtl'};
 let objBox = {obj:'../3dModels/aqua.obj', mtl:'../3dModels/aqua.obj'};
+
+let objBike = {obj: '../3dModels/Tron/bike.obj', mtl: '../3dModels/Tron/bike.mtl'}
+let objRickMorty = {obj: '../3dModels/RickMorty/Portal_guns_and_charging_station.obj', mtl: '../3dModels/RickMorty/Portal_guns_and_charging_station.mtl'}
+let objLightBulb = {obj: '../3dModels/Light Bulb/LightBulb_.obj', mtl: '../3dModels/Light Bulb/LightBulb_.mtl'}
+
+let objDesk = {obj: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.obj', mtl: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.mtl'}
+
+
 
 
 
@@ -87,7 +96,8 @@ async function loadObj(objModelUrl, objectList)
     }
 }
 
-async function loadObjMtl(objModelUrl, objectList)
+
+async function loadObjTardis(objModelUrl, objectList)
 {
     try
     {
@@ -265,7 +275,6 @@ async function loadObjHammer(objModelUrl, objectList)
     }
 }
 
-
 async function loadObjBox(objModelUrl, objectList)
 {
     try
@@ -292,6 +301,150 @@ async function loadObjBox(objModelUrl, objectList)
         object.position.x += 3;
         object.position.y += 2;
         object.scale.set(0.9, 0.9, 0.9);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+/* JAVIER MODELS */
+
+async function loadObjBike(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.set(0,0,-5)
+        object.scale.set(.5, 0.5, 0.5);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+async function loadObjRickMorty(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.set(-5,0,-5)
+        object.scale.set(0.1, 0.1, 0.1);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+async function loadObjLightBulb(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.set(0,0,5)
+        object.scale.set(0.3, 0.3, 0.3);
+
+        objectList.push(object);
+        scene.add(object);
+    }
+    catch (err)
+    {
+        onError(err);
+    }
+}
+
+// FURNITURE
+
+async function loadObjDesk(objModelUrl, objectList)
+{
+    try
+    {
+        const mtlLoader = new MTLLoader();
+
+        const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
+
+        materials.preload();
+        
+        const objLoader = new OBJLoader();
+
+        objLoader.setMaterials(materials);
+
+        const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
+    
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+        
+        object.position.set(5,0,5)
+        object.scale.set(0.3, 0.3, 0.3);
 
         objectList.push(object);
         scene.add(object);
@@ -406,13 +559,20 @@ function createScene(canvas)
     //Mis modelos
     ////////////////////////////////////////////////////////
 
-    loadObjMtl(objTardis, objectList);
+    loadObjTardis(objTardis, objectList);
     loadObjDelorean(objDelorean, objectList);
     loadObjRing(objRing,objectList);
 
     loadObjLight(objLightSaber,objectList);
     loadObjHammer(objHammer,objectList);
     loadObjBox(objBox,objectList );
+
+    loadObjBike(objBike, objectList);
+    loadObjRickMorty(objRickMorty, objectList);
+    loadObjLightBulb(objLightBulb, objectList);
+
+    // Furniture
+    loadObjDesk(objDesk, objectList);
 
     // Create a group to hold the objects
     group = new THREE.Object3D;

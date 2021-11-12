@@ -17,26 +17,26 @@ There will be 9 elements with animation:
 1. Thors Hammers that levitates  a little and  there is like thunders around it 
 2. A light saber that extends and retracts with a color red or blue
 3. A spinner like in the movie Inception that when click starts spinning for a random time making a reference like it is a dream
-<<<<<<< HEAD
 4. A Lightbulb that is hanging from a cable, this cable can move and will move if touched directly.
 5. The Tron Bike making the blue traces Or the EVA from NGE.
 6. The robot that serves butter from Rick & Morty.
-=======
-4. 
-5. 
-6. 
->>>>>>> 46cc4123484d1e28279eae7d4261138b35445888
 7. A DMC DeLorean from the movie Back to the Future, that will have functional headlights and they will project a beam of light, probablby it could open the gullwing doors.
 8. Burn book from the movie Mean Girls and it would open on the exact page were Regina George trashes Cadi 
 9. A figure of the TARDIS from Doctor Who. 
 
+
+We will need some furniture for the room:
+
+1. Bed
+2. Desk
+3. Shelf
+
 In addition to the elements with animation there might be some non-animated decorations.
 
-### Example Image
+### To deliver on the 22nd:
 
-This is the original inspiration for this project, it belongs to [Three.js Journey - Learn WebGL with Three.js](http://threejs-journey.xyz/) website.
+A scene with all the elements floating around, preferable with animations.
 
-![Three.js Room](assets/roomThree.png)
 
 ---
 
