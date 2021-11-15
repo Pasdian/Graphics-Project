@@ -20,7 +20,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd ./3dModels/Room/textures_room/Book Cover/3.jpg
+map_Kd ../3dModels/Room/textures_room/Book Cover/3.jpg
 
 newmtl BookPaper
 Ns 225.000000
@@ -41,8 +41,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\TV Cabinet\\Wood050_2K_Normal.jpg
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\TV Cabinet\\Wood050_2K_Color.jpg
+map_Bump ../3dModels/Room/textures_room/TV Cabinet/Wood050_2K_Normal.jpg
+map_Kd 3 ../dModels/Room/textures_room/TV Cabinet/Wood050_2K_Color.jpg
 
 newmtl DVD_Player
 Ns 0.000000
@@ -73,9 +73,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump -o 1.250000 0.200000 0.000000 -s 1.000000 2.500000 1.000000 C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Floor\\Wood051_2K_Normal.jpg
-map_Kd -o 1.250000 0.200000 0.000000 -s 1.000000 2.500000 1.000000 C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Floor\\Wood051_2K_Color.jpg
-
+map_Bump -o 1.250000 0.200000 0.000000 -s 1.000000 2.500000 1.000000 ../3dModels/Room/textures_room/Floor/Wood051_2K_Normal.jpg
+map_Kd -o 1.250000 0.200000 0.000000 -s 1.000000 2.500000 1.000000 ../3dModels/Room/textures_room/Floor/Wood051_2K_Color.jpg
 newmtl Guitar
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -85,8 +84,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Guitar\\corpodif.jpg
-refl C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Guitar\\KC_outside_Xsm_blur.hdr
+map_Kd ../3dModels/Room/textures_room/Guitar/corpodif.jpg
+refl ../3dModels/Room/textures_room/Guitar/KC_outside_Xsm_blur.hdr
 
 newmtl JoystickLights
 Ns 323.999994
@@ -208,7 +207,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 1
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Remote\\dif.jpg
+map_Kd ../3dModels/Room/textures_room/Remote/dif.jpg
 
 newmtl Sofa
 Ns 323.999994
@@ -309,7 +308,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Tea Table\\Wood.jpg
+map_Kd ../3dModels/Room/textures_room/Tea Table/Wood.jpg
 
 newmtl Wall
 Ns 225.000000
@@ -330,7 +329,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Wall Frame\\among us.jpg
+map_Kd ../3dModels/Room/textures_room/Wall Frame/among us.jpg
 
 newmtl Water
 Ns 900.000000
@@ -361,7 +360,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\gorshok.jpg
+map_Kd C../3dModels/Room/textures_room/Indoor Plant/gorshok.jpg
 
 newmtl joystick
 Ns 143.999983
@@ -382,8 +381,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\leaf_normal.jpg
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\leaf.jpg
+map_Bump ../3dModels/Room/textures_room/Indoor Plant/leaf_normal.jpg
+map_Kd ../3dModels/Room/textures_room/Indoor Plant/leaf.jpg
 
 newmtl logodvd
 Ns 18.000005
@@ -404,7 +403,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\moh.jpg
+map_Kd ../3dModels/Room/textures_room/Indoor Plant/moh.jpg
 
 newmtl pesdvdpeq
 Ns 18.000005
@@ -425,8 +424,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\sand_normal.jpg
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\sand.jpg
+map_Bump ../3dModels/Room/textures_room/Indoor Plant/sand_normal.jpg
+map_Kd ../3dModels/Room/textures_room/Indoor Plant/sand.jpg
 
 newmtl stem
 Ns 272.250012
@@ -437,4 +436,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:\\Users\\rscnaa\\Downloads\\Compressed\\Blender Room\\Room #1\\TEXTURES\\Indoor Plant\\stem.jpg
+map_Kd ../3dModels/Room/textures_room/Indoor Plant/stem.jpg
