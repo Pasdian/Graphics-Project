@@ -28,7 +28,7 @@ let objHammer = {obj:'../3dModels/mjolnirOBJ.obj',  mtl:'../3dModels/mjolnirOBJ.
 let objBox = {obj:'../3dModels/aqua.obj', mtl:'../3dModels/aqua.obj'};
 
 let objBike = {obj: '../3dModels/Tron/bike.obj', mtl: '../3dModels/Tron/bike.mtl'}
-let objRickMorty = {obj: '../3dModels/RickMorty/Portal_guns_and_charging_station.obj', mtl: '../3dModels/RickMorty/Portal_guns_and_charging_station.mtl'}
+let objRickMorty = {obj: '../3dModels/Room/OBJ/Room #1.obj', mtl: '../3dModels/RickMorty/Portal_guns_and_charging_station.mtl'}
 let objLightBulb = {obj: '../3dModels/Light Bulb/LightBulb_.obj', mtl: '../3dModels/Light Bulb/LightBulb_.mtl'}
 
 let objDesk = {obj: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.obj', mtl: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.mtl'}
@@ -348,7 +348,7 @@ async function loadObjBike(objModelUrl, objectList)
     }
 }
 
-async function loadObjRickMorty(objModelUrl, objectList)
+async function loadRoom(objModelUrl, objectList)
 {
     try
     {
@@ -568,7 +568,7 @@ function createScene(canvas)
     loadObjBox(objBox,objectList );
 
     loadObjBike(objBike, objectList);
-    loadObjRickMorty(objRickMorty, objectList);
+    loadRoom(objRickMorty, objectList);
     loadObjLightBulb(objLightBulb, objectList);
 
     // Furniture
