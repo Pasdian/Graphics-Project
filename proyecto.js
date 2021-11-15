@@ -371,7 +371,7 @@ async function loadRoom(objModelUrl, objectList)
             }
         });
         
-        object.position.set(-5,0,-5)
+        object.position.set(0,0,0);
         object.scale.set(0.1, 0.1, 0.1);
 
         objectList.push(object);
@@ -484,12 +484,7 @@ function animate()
     let now = Date.now();
     let deltat = now - currentTime;
     currentTime = now;
-    let fract = deltat / duration;
-    let angle = Math.PI * 2 * fract;
-
-    for(const object of objectList)
-        if(object)
-            object.rotation.y += angle / 2;
+    
 }
 
 function update() 
@@ -559,47 +554,27 @@ function createScene(canvas)
     //Mis modelos
     ////////////////////////////////////////////////////////
 
-    loadObjTardis(objTardis, objectList);
-    loadObjDelorean(objDelorean, objectList);
-    loadObjRing(objRing,objectList);
+    //loadObjTardis(objTardis, objectList);
+    //loadObjDelorean(objDelorean, objectList);
+    //loadObjRing(objRing,objectList);
 
-    loadObjLight(objLightSaber,objectList);
-    loadObjHammer(objHammer,objectList);
-    loadObjBox(objBox,objectList );
+    //loadObjLight(objLightSaber,objectList);
+    //loadObjHammer(objHammer,objectList);
+    //loadObjBox(objBox,objectList );
 
-    loadObjBike(objBike, objectList);
+    //loadObjBike(objBike, objectList);
     loadRoom(objRoom, objectList);
-    loadObjLightBulb(objLightBulb, objectList);
+    //loadObjLightBulb(objLightBulb, objectList);
 
     // Furniture
-    loadObjDesk(objDesk, objectList);
+    //loadObjDesk(objDesk, objectList);
 
     // Create a group to hold the objects
     group = new THREE.Object3D;
     scene.add(group);
 
     // Create a texture map
-    const map = new THREE.TextureLoader().load(mapUrl);
-    map.wrapS = map.wrapT = THREE.RepeatWrapping;
-    map.repeat.set(8, 8);
-
-    // Put in a ground plane to show off the lighting
-    let geometry = new THREE.PlaneGeometry(200, 200, 50, 50);
-    let mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({map:map, side:THREE.DoubleSide}));
-
-    mesh.rotation.x = -Math.PI / 2;
-    mesh.position.y = -4.02;
-    mesh.castShadow = false;
-    mesh.receiveShadow = true;
-    group.add( mesh );
     
-    // Create the cylinder 
-    geometry = new THREE.CylinderGeometry(1, 2, 2, 50, 10);
-    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial());
-    mesh.position.y = -3;
-    mesh.castShadow = false;
-    mesh.receiveShadow = true;    
-    group.add( mesh );
 }
 
 main();
