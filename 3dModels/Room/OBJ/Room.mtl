@@ -42,7 +42,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Bump Wood050_2K_Normal.jpg
-map_Kd 3 Wood050_2K_Color.jpg
+map_Kd Wood050_2K_Color.jpg
 
 newmtl DVD_Player
 Ns 0.000000
@@ -291,6 +291,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd cyberpunk77.jpeg
 
 newmtl Table_Drawer
 Ns 440.999985
@@ -304,14 +305,14 @@ illum 2
 
 newmtl Tea_Table_
 Ns 225.000000
-Ka 1.000000 1.000000 1.000000
+Ka .8.000000 1.000000 1.000000
 Kd 0.015814 0.015995 0.015634
 Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
+Ke 1.000000 0.800000 0.800000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Wood.jpg
+map_Kd Wood050_2K_Color.jpg
 
 newmtl Wall
 Ns 225.000000
@@ -322,6 +323,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd checker_large.gif
 
 newmtl Wall_Frame
 Ns 225.000000
@@ -439,4 +441,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd tem.jpg
+map_Kd stem.jpg
