@@ -547,7 +547,7 @@ function createScene(canvas)
     spotLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
 
-    ambientLight = new THREE.AmbientLight ( 0x444444, 0.8);
+    ambientLight = new THREE.AmbientLight ( 0xffffff, 1);
     scene.add(ambientLight);
 
     /////////////////////////////////////////////////////////

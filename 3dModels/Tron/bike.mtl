@@ -80,8 +80,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd /home/pavtiger/Docs/TRON_multiplayer/static/models/segment.jpg
-map_d /home/pavtiger/Docs/TRON_multiplayer/static/models/segment.jpg
+map_Kd /3dModels/Tron/segment.jpg
+map_d /3dModels/Tron/segment.jpg
 
 newmtl white
 Ns 0.000000
