@@ -264,7 +264,7 @@ async function loadObjHammer(objModelUrl, objectList)
         });
         
         object.position.x += -4;
-        object.scale.set(0.01, 0.01, 0.01);
+        object.scale.set(1.01, 1.01, 1.01);
 
         objectList.push(object);
         scene.add(object);
