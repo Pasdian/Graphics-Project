@@ -233,8 +233,10 @@ async function loadObjLight(objModelUrl, objectList)
             }
         });
         
-        object.position.x += 5;
-        object.scale.set(0.01, 0.01, 0.01);
+        object.position.x += -2;
+        object.position.y += 1.15;
+        object.position.z += -3.5;
+        object.scale.set(0.003, 0.003, 0.003);
 
         objectList.push(object);
         scene.add(object);
@@ -268,8 +270,11 @@ async function loadObjHammer(objModelUrl, objectList)
             }
         });
         
-        object.position.x += -4;
-        object.scale.set(1.01, 1.01, 1.01);
+        object.position.x += 3.6;
+        object.position.y += 1.4;
+        object.position.z += 3;
+        object.rotation.x = -3;
+        object.scale.set(3.01, 3.01, 3.01);
 
         objectList.push(object);
         scene.add(object);
@@ -303,9 +308,11 @@ async function loadObjBox(objModelUrl, objectList)
             }
         });
         
-        object.position.x += 3;
-        object.position.y += 2;
-        object.scale.set(0.9, 0.9, 0.9);
+        object.position.x += 3.4;
+        object.position.z += -3.8;
+        object.position.y += 4;
+        object.rotation.x = 1.65;
+        object.scale.set(0.7, 0.7, 0.7);
 
         objectList.push(object);
         scene.add(object);
@@ -563,9 +570,9 @@ function createScene(canvas)
     loadObjDelorean(objDelorean, objectList);
     loadObjRing(objRing,objectList);
 
-    //loadObjLight(objLightSaber,objectList);
-    //loadObjHammer(objHammer,objectList);
-    //loadObjBox(objBox,objectList );
+    loadObjLight(objLightSaber,objectList);
+    loadObjHammer(objHammer,objectList);
+    loadObjBox(objBox,objectList );
 
     //loadObjBike(objBike, objectList);
     loadRoom(objRoom, objectList);
