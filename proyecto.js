@@ -20,7 +20,7 @@ let mapUrl = "../imagenes/checker_large.gif";
 let SHADOW_MAP_WIDTH = 4096, SHADOW_MAP_HEIGHT = 4096;
 
 let objTardis = {obj: '../3dModels/Tardis.obj',  mtl:'../3dModels/Tardis.mtl'};
-let objDelorean = {obj: '../3dModels/delorean2.obj',  mtl:'../3dModels/delorean.mtl'};
+let objDelorean = {obj: '../3dModels/Acura_NSX_1997.obj',  mtl:'../3dModels/Acura_NSX_1997.mtl'};
 let objRing = {obj: '../3dModels/ring.obj',  mtl:'../3dModels/ring.mtl'};
 
 let objLightSaber = {obj:'../3dModels/3d-model.obj',   mtl:'../3dModels/3d-model.mtl'};
@@ -121,6 +121,7 @@ async function loadObjTardis(objModelUrl, objectList)
         });
         
         object.position.y += 1;
+        object.position.x += -3;
         object.scale.set(0.15, 0.15, 0.15);
 
         objectList.push(object);
@@ -155,9 +156,11 @@ async function loadObjDelorean(objModelUrl, objectList)
             }
         });
         
-        object.position.y += 1;
-        object.position.x += -10;
-        object.scale.set(0.15, 0.15, 0.15);
+        object.position.y += 0;
+        object.position.x += -3.3;
+        object.position.z += -1.5;
+        object.scale.set(0.005, 0.005, 0.005);
+        
 
         objectList.push(object);
         scene.add(object);
@@ -189,11 +192,13 @@ async function loadObjRing(objModelUrl, objectList)
                 child.castShadow = true;
                 child.receiveShadow = true;
             }
+            
         });
         
-        object.position.y += 1;
-        object.position.x += 8;
-        object.scale.set(2, 2, 2);
+        object.position.y += 1.38;
+        object.position.x += -1;
+        object.position.z += -.5;
+        object.scale.set(0.2, 0.2, 0.2);
 
         objectList.push(object);
         scene.add(object);
@@ -228,8 +233,10 @@ async function loadObjLight(objModelUrl, objectList)
             }
         });
         
-        object.position.x += 5;
-        object.scale.set(0.01, 0.01, 0.01);
+        object.position.x += -2;
+        object.position.y += 1.15;
+        object.position.z += -3.5;
+        object.scale.set(0.003, 0.003, 0.003);
 
         objectList.push(object);
         scene.add(object);
@@ -263,8 +270,11 @@ async function loadObjHammer(objModelUrl, objectList)
             }
         });
         
-        object.position.x += -4;
-        object.scale.set(0.01, 0.01, 0.01);
+        object.position.x += 3.6;
+        object.position.y += 1.4;
+        object.position.z += 3;
+        object.rotation.x = -3;
+        object.scale.set(3.01, 3.01, 3.01);
 
         objectList.push(object);
         scene.add(object);
@@ -298,9 +308,11 @@ async function loadObjBox(objModelUrl, objectList)
             }
         });
         
-        object.position.x += 3;
-        object.position.y += 2;
-        object.scale.set(0.9, 0.9, 0.9);
+        object.position.x += 3.4;
+        object.position.z += -3.8;
+        object.position.y += 4;
+        object.rotation.x = 1.65;
+        object.scale.set(0.7, 0.7, 0.7);
 
         objectList.push(object);
         scene.add(object);
@@ -372,7 +384,7 @@ async function loadRoom(objModelUrl, objectList)
         });
         
         object.position.set(0,0,0);
-        object.scale.set(0.1, 0.1, 0.1);
+        object.scale.set(1.0, 1.0, 1.0);
 
         objectList.push(object);
         scene.add(object);
@@ -554,13 +566,13 @@ function createScene(canvas)
     //Mis modelos
     ////////////////////////////////////////////////////////
 
-    //loadObjTardis(objTardis, objectList);
-    //loadObjDelorean(objDelorean, objectList);
-    //loadObjRing(objRing,objectList);
+    loadObjTardis(objTardis, objectList);
+    loadObjDelorean(objDelorean, objectList);
+    loadObjRing(objRing,objectList);
 
-    //loadObjLight(objLightSaber,objectList);
-    //loadObjHammer(objHammer,objectList);
-    //loadObjBox(objBox,objectList );
+    loadObjLight(objLightSaber,objectList);
+    loadObjHammer(objHammer,objectList);
+    loadObjBox(objBox,objectList );
 
     //loadObjBike(objBike, objectList);
     loadRoom(objRoom, objectList);
