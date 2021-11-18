@@ -29,9 +29,9 @@ let objBox = {obj:'../3dModels/aqua.obj', mtl:'../3dModels/aqua.obj'};
 
 let objBike = {obj: '../3dModels/Tron/bike.obj', mtl: '../3dModels/Tron/bike.mtl'}
 let objRoom = {obj: '../3dModels/Room/OBJ/Room.obj', mtl: '../3dModels/Room/OBJ/Room.mtl'}
-let objLightBulb = {obj: '../3dModels/Light Bulb/LightBulb_.obj', mtl: '../3dModels/Light Bulb/LightBulb_.mtl'}
+let objLight = {obj: '../3dModels/light/Pinch_125_wishnya.obj', mtl: '../3dModels/light/Pinch_125_wishnya.mtl'}
 
-let objDesk = {obj: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.obj', mtl: '../3dModels/Desk/Helsinki_Office_35_Desk_System_by_Desalto.mtl'}
+let objImperial = {obj: '../3dModels/Imperial/starWars.obj', mtl: '../3dModels/Imperial/starWars.mtl'}
 
 
 
@@ -348,8 +348,11 @@ async function loadObjBike(objModelUrl, objectList)
             }
         });
         
-        object.position.set(0,0,-5)
-        object.scale.set(.5, 0.5, 0.5);
+        object.position.x += 1.8;
+        object.position.y += 1.25;
+        object.position.z += -3.5;
+        object.rotation.y = 1.4;
+        object.scale.set(.1, 0.1, 0.1);
 
         objectList.push(object);
         scene.add(object);
@@ -418,8 +421,8 @@ async function loadObjLightBulb(objModelUrl, objectList)
             }
         });
         
-        object.position.set(0,0,5)
-        object.scale.set(0.3, 0.3, 0.3);
+        object.position.set(0,5,0)
+        object.scale.set(0.001, 0.001, 0.001);
 
         objectList.push(object);
         scene.add(object);
@@ -432,7 +435,7 @@ async function loadObjLightBulb(objModelUrl, objectList)
 
 // FURNITURE
 
-async function loadObjDesk(objModelUrl, objectList)
+async function loadObjImperial(objModelUrl, objectList)
 {
     try
     {
@@ -455,8 +458,8 @@ async function loadObjDesk(objModelUrl, objectList)
             }
         });
         
-        object.position.set(5,0,5)
-        object.scale.set(0.3, 0.3, 0.3);
+        object.position.set(1,4,1)
+        object.scale.set(0.1, 0.1, 0.1);
 
         objectList.push(object);
         scene.add(object);
@@ -574,9 +577,10 @@ function createScene(canvas)
     loadObjHammer(objHammer,objectList);
     loadObjBox(objBox,objectList );
 
-    //loadObjBike(objBike, objectList);
+    loadObjBike(objBike, objectList);
     loadRoom(objRoom, objectList);
-    //loadObjLightBulb(objLightBulb, objectList);
+    loadObjLightBulb(objLight, objectList);
+    loadObjImperial(objImperial, objectList);
 
     // Furniture
     //loadObjDesk(objDesk, objectList);
