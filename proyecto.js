@@ -34,8 +34,8 @@ let objLight = {obj: '../3dModels/light/Pinch_125_wishnya.obj', mtl: '../3dModel
 let objImperial = {obj: '../3dModels/Imperial/starWars.obj', mtl: '../3dModels/Imperial/starWars.mtl'}
 
 
-
-
+let raycaster = null, mouse = new THREE.Vector2(), intersected, clicked;
+let root = null;
 
 function main()
 {
@@ -125,6 +125,7 @@ async function loadObjTardis(objModelUrl, objectList)
         object.scale.set(0.15, 0.15, 0.15);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -163,6 +164,7 @@ async function loadObjDelorean(objModelUrl, objectList)
         
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -201,6 +203,7 @@ async function loadObjRing(objModelUrl, objectList)
         object.scale.set(0.2, 0.2, 0.2);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -239,6 +242,7 @@ async function loadObjLight(objModelUrl, objectList)
         object.scale.set(0.003, 0.003, 0.003);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -277,6 +281,7 @@ async function loadObjHammer(objModelUrl, objectList)
         object.scale.set(3.01, 3.01, 3.01);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -315,6 +320,7 @@ async function loadObjBox(objModelUrl, objectList)
         object.scale.set(0.7, 0.7, 0.7);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -355,6 +361,7 @@ async function loadObjBike(objModelUrl, objectList)
         object.scale.set(.1, 0.1, 0.1);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -363,7 +370,7 @@ async function loadObjBike(objModelUrl, objectList)
     }
 }
 
-async function loadRoom(objModelUrl, objectList)
+async function loadRoom(objModelUrl, objectList )
 {
     try
     {
@@ -390,6 +397,7 @@ async function loadRoom(objModelUrl, objectList)
         object.scale.set(1.0, 1.0, 1.0);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -398,22 +406,40 @@ async function loadRoom(objModelUrl, objectList)
     }
 }
 
+
+function onDocumentPointerDown(event)
+{
+    event.preventDefault();
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+    raycaster.setFromCamera( mouse, camera );
+
+    let intersects = raycaster.intersectObjects( root.children );
+
+    if ( intersects.length > 0 ) 
+    {
+        console.log("JELOU")
+    }
+}
+
+
 async function loadObjLightBulb(objModelUrl, objectList)
 {
     try
     {
         const mtlLoader = new MTLLoader();
-
+        
         const materials = await mtlLoader.loadAsync(objModelUrl.mtl, onProgress, onError);
-
+        
         materials.preload();
         
         const objLoader = new OBJLoader();
-
+        
         objLoader.setMaterials(materials);
-
+        
         const object = await objLoader.loadAsync(objModelUrl.obj, onProgress, onError);
-    
+        
         object.traverse(function (child) {
             if (child.isMesh) {
                 child.castShadow = true;
@@ -423,8 +449,9 @@ async function loadObjLightBulb(objModelUrl, objectList)
         
         object.position.set(0,5,0)
         object.scale.set(0.001, 0.001, 0.001);
-
+        
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
@@ -437,6 +464,7 @@ async function loadObjLightBulb(objModelUrl, objectList)
 
 async function loadObjImperial(objModelUrl, objectList)
 {
+
     try
     {
         const mtlLoader = new MTLLoader();
@@ -462,12 +490,14 @@ async function loadObjImperial(objModelUrl, objectList)
         object.scale.set(0.1, 0.1, 0.1);
 
         objectList.push(object);
+        root.add( object );
         scene.add(object);
     }
     catch (err)
     {
         onError(err);
     }
+
 }
 
 
@@ -518,6 +548,8 @@ function update()
 
 function createScene(canvas) 
 {
+    root = new THREE.Object3D(); 
+
     // Create the Three.js renderer and attach it to our canvas
     renderer = new THREE.WebGLRenderer( { canvas: canvas, antialias: true } );
 
@@ -565,30 +597,34 @@ function createScene(canvas)
     ambientLight = new THREE.AmbientLight ( 0xffffff, 1);
     scene.add(ambientLight);
 
+    raycaster = new THREE.Raycaster();
+    
     /////////////////////////////////////////////////////////
     //Mis modelos
     ////////////////////////////////////////////////////////
-
+    
     loadObjTardis(objTardis, objectList);
     loadObjDelorean(objDelorean, objectList);
     loadObjRing(objRing,objectList);
-
+    
     loadObjLight(objLightSaber,objectList);
     loadObjHammer(objHammer,objectList);
     loadObjBox(objBox,objectList );
-
+    
     loadObjBike(objBike, objectList);
     loadRoom(objRoom, objectList);
     loadObjLightBulb(objLight, objectList);
     loadObjImperial(objImperial, objectList);
-
+    
+    document.addEventListener('pointerdown', onDocumentPointerDown);
+    
     // Furniture
     //loadObjDesk(objDesk, objectList);
-
+    
     // Create a group to hold the objects
     group = new THREE.Object3D;
     scene.add(group);
-
+    
     // Create a texture map
     
 }
