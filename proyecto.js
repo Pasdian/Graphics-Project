@@ -15,7 +15,8 @@ let currentTime = Date.now();
 
 let directionalLight = null,
   spotLight = null,
-  ambientLight = null;
+  ambientLight = null,
+  pointLight = null;
 
 let mapUrl = "../imagenes/checker_large.gif";
 
@@ -64,6 +65,8 @@ const root = [];
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
+const listener = new THREE.AudioListener();
+
 function main() {
   const canvas = document.getElementById("webglcanvas");
 
@@ -85,47 +88,6 @@ function onProgress(xhr) {
       xhr.target.responseURL,
       Math.round(percentComplete, 2) + "% downloaded"
     );
-  }
-}
-
-async function loadObj(objModelUrl, objectList) {
-  try {
-    const object = await new OBJLoader().loadAsync(
-      objModelUrl.obj,
-      onProgress,
-      onError
-    );
-    let texture = objModelUrl.hasOwnProperty("normalMap")
-      ? new THREE.TextureLoader().load(objModelUrl.map)
-      : null;
-    let normalMap = objModelUrl.hasOwnProperty("normalMap")
-      ? new THREE.TextureLoader().load(objModelUrl.normalMap)
-      : null;
-    let specularMap = objModelUrl.hasOwnProperty("specularMap")
-      ? new THREE.TextureLoader().load(objModelUrl.specularMap)
-      : null;
-
-    console.log(object);
-
-    object.traverse(function (child) {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        child.material.map = texture;
-        child.material.normalMap = normalMap;
-        child.material.specularMap = specularMap;
-      }
-    });
-
-    object.scale.set(3, 3, 3);
-    object.position.z = -3;
-    object.position.x = -1.5;
-    object.rotation.y = -3;
-    object.name = "objObject";
-    objectList.push(object);
-    scene.add(object);
-  } catch (err) {
-    onError(err);
   }
 }
 
@@ -459,7 +421,6 @@ async function loadRoom(objModelUrl, objectList) {
     object.scale.set(1.0, 1.0, 1.0);
 
     objectList.push(object);
-    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -600,6 +561,16 @@ function onMouseDown(event) {
   console.log("Mouse Down");
 
   raycaster.setFromCamera(mouse, camera);
+
+  /*   for (let i = 0; i < root.length; i++) {
+    if (raycaster.intersectObject(root[i]) =! null) {
+      console.log("Specific object pressed")
+      console.log[root[i]]
+      
+    }
+    
+  } */
+
   const intersects = raycaster.intersectObjects(root, true);
   console.log("Root Children");
   console.log(root);
@@ -635,8 +606,21 @@ function createScene(canvas) {
     4000
   );
   camera.position.set(-2, 6, 12);
+  camera.add(listener);
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
+
+  pointLight = new THREE.PointLight(0xffe28e, 1, 100);
+  pointLight2 = new THREE.PointLight(0xffe28e, 1, 100);
+  pointLight3 = new THREE.PointLight(0xffe28e, 1, 100);
+
+  pointLight.position.set(0, 5, 0);
+  pointLight2.position.set(0, 5, 0);
+  pointLight3.position.set(0, 5, 0);
+
+  scene.add(pointLight);
+  scene.add(pointLight2);
+  scene.add(pointLight3);
 
   // Add a directional light to show off the object
   directionalLight = new THREE.DirectionalLight(0xaaaaaa, 1);
