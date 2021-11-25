@@ -28,8 +28,8 @@ let objTardis = {
   mtl: "../3dModels/Tardis.mtl",
 };
 let objDelorean = {
-  obj: "../3dModels/Acura_NSX_1997.obj",
-  mtl: "../3dModels/Acura_NSX_1997.mtl",
+  obj: "../3dModels/car/Vazz.obj",
+  mtl: "../3dModels/car/Vazz.mtl",
 };
 let objRing = { obj: "../3dModels/ring.obj", mtl: "../3dModels/ring.mtl" };
 
@@ -61,7 +61,7 @@ let objImperial = {
   mtl: "../3dModels/Imperial/starWars.mtl",
 };
 
-const root = [];
+const root = new THREE.Object3D();
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
@@ -125,8 +125,7 @@ async function loadObjTardis(objModelUrl, objectList) {
     object.scale.set(0.15, 0.15, 0.15);
 
     objectList.push(object);
-    root.push(object);
-    console.log(root);
+    root.add(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -168,7 +167,7 @@ async function loadObjDelorean(objModelUrl, objectList) {
     object.scale.set(0.005, 0.005, 0.005);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -210,7 +209,7 @@ async function loadObjRing(objModelUrl, objectList) {
     object.scale.set(0.2, 0.2, 0.2);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -252,7 +251,7 @@ async function loadObjLight(objModelUrl, objectList) {
     object.scale.set(0.003, 0.003, 0.003);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -295,7 +294,7 @@ async function loadObjHammer(objModelUrl, objectList) {
     object.scale.set(3.01, 3.01, 3.01);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -338,7 +337,7 @@ async function loadObjBox(objModelUrl, objectList) {
     object.scale.set(0.7, 0.7, 0.7);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -381,7 +380,7 @@ async function loadObjBike(objModelUrl, objectList) {
     object.scale.set(0.1, 0.1, 0.1);
 
     objectList.push(object);
-    root.push(object);
+
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -458,7 +457,7 @@ async function loadObjLightBulb(objModelUrl, objectList) {
 
     object.position.set(0, 5, 0);
     object.scale.set(0.001, 0.001, 0.001);
-    root.push(object);
+
     objectList.push(object);
     scene.add(object);
   } catch (err) {
@@ -531,6 +530,7 @@ function initControls() {
   document.querySelector("#ambientLight").addEventListener("input", (event) => {
     ambientLight.color.set(event.target.value);
   });
+  window.addEventListener("pointerdown", onMouseDown, false);
 }
 
 function animate() {
@@ -542,7 +542,6 @@ function animate() {
 function update() {
   requestAnimationFrame(function () {
     update();
-    window.addEventListener("pointerdown", onMouseDown, false);
   });
 
   // Render the scene
@@ -556,9 +555,9 @@ function update() {
 }
 
 function onMouseDown(event) {
-  mouse.x = (event.clientX / 1920) * 2 - 1;
-  mouse.y = -(event.clientY / 1080) * 2 + 1;
-  console.log("Mouse Down");
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  console.log("Mouse Down")
 
   raycaster.setFromCamera(mouse, camera);
 
@@ -577,9 +576,9 @@ function onMouseDown(event) {
   console.log("INTERSECTS");
   console.log(intersects.length);
 
-  if (intersects.length > 0) {
+  for (let i = 0; i < intersects.length; i++) {
     console.log("CONSOLE");
-  }
+  }                        
 }
 
 function createScene(canvas) {
@@ -664,6 +663,8 @@ function createScene(canvas) {
   loadObjLightBulb(objLight, objectList);
   loadObjImperial(objImperial, objectList);
   loadRoom(objRoom, objectList);
+
+
 
   // Furniture
   //loadObjDesk(objDesk, objectList);
