@@ -573,16 +573,16 @@ function onMouseDown(event) {
   console.log("Mouse Down");
 
   raycaster.setFromCamera(mouse, camera);
-/* 
-    for (let i = 0; i < root.length; i++) {
+
+    for (let i = 0; i < root.length+1; i++) {
     if (raycaster.intersectObject(root[i]) =! null) {
       console.log("Specific object pressed")
       console.log[root[i]]
       
     }
     
-  } */
-  var intersects = raycaster.intersectObjects(root, true);
+  }
+ /*  var intersects = raycaster.intersectObjects(root, true);
   console.log("Intersects Children");
   console.log(intersects);
   console.log("INTERSECTS");
@@ -590,7 +590,7 @@ function onMouseDown(event) {
 
   if (intersects.length > 0){
     console.log("Console")
-  }
+  } */
 }
 
 function createScene(canvas) {
@@ -618,21 +618,30 @@ function createScene(canvas) {
   );
   camera.position.set(-2, 6, 12);
   camera.add(listener);
+  const sound = new THREE.Audio( listener );
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load( "/assets/Sounds/music1.ogg", function( buffer ) {
+    sound.setBuffer( buffer );
+    sound.setLoop( true );
+    sound.setVolume( 0.5 );
+    sound.play();
+  });
+
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
 
-  pointLight = new THREE.PointLight(0xffe28e, 1, 50);
-  pointLight2 = new THREE.PointLight(0xffe28e, 1, 50);
-  pointLight3 = new THREE.PointLight(0xffe28e, 1, 50);
+  pointLight = new THREE.PointLight(0xffe28e, .8, 100);
+  pointLight2 = new THREE.PointLight(0xffe28e, .8, 100);
+  pointLight3 = new THREE.PointLight(0xffe28e, .8, 100);
 
-  pointLight.position.set(0, 5, 0);
+  pointLight.position.set(0, 5, 1);
   pointLight2.position.set(0, 5, 0);
-  pointLight3.position.set(0, 5, 0);
+  pointLight3.position.set(0, 5, -1);
 
   scene.add(pointLight);
   scene.add(pointLight2);
   scene.add(pointLight3);
-
+/* 
   // Add a directional light to show off the object
   directionalLight = new THREE.DirectionalLight(0xaaaaaa, 1);
 
@@ -657,7 +666,7 @@ function createScene(canvas) {
   spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
 
   ambientLight = new THREE.AmbientLight(0xffffff, 1);
-  scene.add(ambientLight);
+  scene.add(ambientLight); */
 
   /////////////////////////////////////////////////////////
   //Mis modelos
