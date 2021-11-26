@@ -582,9 +582,9 @@ function onMouseDown(event) {
     }
     
   } */
-  const intersects = raycaster.intersectObjects(root, true);
-  console.log("Root Children");
-  console.log(root);
+  var intersects = raycaster.intersectObjects(root, true);
+  console.log("Intersects Children");
+  console.log(intersects);
   console.log("INTERSECTS");
   console.log(intersects.length);
 
