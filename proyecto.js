@@ -574,10 +574,13 @@ function onMouseDown(event) {
 
   raycaster.setFromCamera(mouse, camera);
 
-    for (let i = 0; i < root.length+1; i++) {
-    if (raycaster.intersectObject(root[i]) =! null) {
+    for (let i = 0; i < root.length-1; i++) {
+    if (raycaster.intersectObject(root[i]) != null) {
+      console.log[root[1]]
       console.log("Specific object pressed")
-      console.log[root[i]]
+      console.log(root)
+      console.log(i)
+      
       
     }
     
@@ -620,7 +623,7 @@ function createScene(canvas) {
   camera.add(listener);
   const sound = new THREE.Audio( listener );
   const audioLoader = new THREE.AudioLoader();
-  audioLoader.load( "/assets/Sounds/music1.ogg", function( buffer ) {
+  audioLoader.load( "/assets/Sounds/music2.mp3", function( buffer ) {
     sound.setBuffer( buffer );
     sound.setLoop( true );
     sound.setVolume( 0.5 );
@@ -630,13 +633,22 @@ function createScene(canvas) {
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
 
-  pointLight = new THREE.PointLight(0xffe28e, .8, 100);
-  pointLight2 = new THREE.PointLight(0xffe28e, .8, 100);
-  pointLight3 = new THREE.PointLight(0xffe28e, .8, 100);
+  pointLight = new THREE.PointLight(0xffffff, .6, 100);
+  pointLight2 = new THREE.PointLight(0xffffff, .6, 100);
+  pointLight3 = new THREE.PointLight(0xffffff, .6, 100);
 
-  pointLight.position.set(0, 5, 1);
-  pointLight2.position.set(0, 5, 0);
-  pointLight3.position.set(0, 5, -1);
+  pointLight.position.set(0, 4, 3);
+  pointLight2.position.set(0, 4, 0);
+  pointLight3.position.set(0, 4, -3);
+
+  pointLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+  pointLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
+  pointLight2.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+  pointLight2.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
+  pointLight3.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+  pointLight3.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
 
   scene.add(pointLight);
   scene.add(pointLight2);
@@ -664,9 +676,10 @@ function createScene(canvas) {
 
   spotLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
   spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+  */
 
-  ambientLight = new THREE.AmbientLight(0xffffff, 1);
-  scene.add(ambientLight); */
+  ambientLight = new THREE.AmbientLight(0xffffff, .1);
+  scene.add(ambientLight); 
 
   /////////////////////////////////////////////////////////
   //Mis modelos
