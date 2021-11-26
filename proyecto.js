@@ -16,7 +16,9 @@ let currentTime = Date.now();
 let directionalLight = null,
   spotLight = null,
   ambientLight = null,
-  pointLight = null;
+  pointLight = null,
+  pointLight2 = null,
+  pointLight3 = null;
 
 let mapUrl = "../imagenes/checker_large.gif";
 
@@ -61,7 +63,7 @@ let objImperial = {
   mtl: "../3dModels/Imperial/starWars.mtl",
 };
 
-const root = new THREE.Object3D();
+const root = [];
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
@@ -125,7 +127,8 @@ async function loadObjTardis(objModelUrl, objectList) {
     object.scale.set(0.15, 0.15, 0.15);
 
     objectList.push(object);
-    root.add(object);
+    object.name = "tardis"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -167,7 +170,8 @@ async function loadObjDelorean(objModelUrl, objectList) {
     object.scale.set(0.005, 0.005, 0.005);
 
     objectList.push(object);
-
+    object.name = "delorean"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -209,7 +213,8 @@ async function loadObjRing(objModelUrl, objectList) {
     object.scale.set(0.2, 0.2, 0.2);
 
     objectList.push(object);
-
+    object.name = "ring"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -251,7 +256,8 @@ async function loadObjLight(objModelUrl, objectList) {
     object.scale.set(0.003, 0.003, 0.003);
 
     objectList.push(object);
-
+    object.name = "lightsaber"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -294,7 +300,8 @@ async function loadObjHammer(objModelUrl, objectList) {
     object.scale.set(3.01, 3.01, 3.01);
 
     objectList.push(object);
-
+    object.name = "hammer"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -337,7 +344,8 @@ async function loadObjBox(objModelUrl, objectList) {
     object.scale.set(0.7, 0.7, 0.7);
 
     objectList.push(object);
-
+    object.name = "trident"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -380,7 +388,8 @@ async function loadObjBike(objModelUrl, objectList) {
     object.scale.set(0.1, 0.1, 0.1);
 
     objectList.push(object);
-
+    object.name = "tron"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -418,7 +427,7 @@ async function loadRoom(objModelUrl, objectList) {
 
     object.position.set(0, 0, 0);
     object.scale.set(1.0, 1.0, 1.0);
-
+    object.name = "room"
     objectList.push(object);
     scene.add(object);
   } catch (err) {
@@ -459,6 +468,8 @@ async function loadObjLightBulb(objModelUrl, objectList) {
     object.scale.set(0.001, 0.001, 0.001);
 
     objectList.push(object);
+    object.name = "lightbulb"
+    root.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -500,6 +511,8 @@ async function loadObjImperial(objModelUrl, objectList) {
     objectList.push(object);
 
     scene.add(object);
+    object.name = "tieFighter"
+    root.push(object);
   } catch (err) {
     onError(err);
   }
@@ -557,11 +570,11 @@ function update() {
 function onMouseDown(event) {
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  console.log("Mouse Down")
+  console.log("Mouse Down");
 
   raycaster.setFromCamera(mouse, camera);
-
-  /*   for (let i = 0; i < root.length; i++) {
+/* 
+    for (let i = 0; i < root.length; i++) {
     if (raycaster.intersectObject(root[i]) =! null) {
       console.log("Specific object pressed")
       console.log[root[i]]
@@ -569,16 +582,15 @@ function onMouseDown(event) {
     }
     
   } */
-
   const intersects = raycaster.intersectObjects(root, true);
   console.log("Root Children");
   console.log(root);
   console.log("INTERSECTS");
   console.log(intersects.length);
 
-  for (let i = 0; i < intersects.length; i++) {
-    console.log("CONSOLE");
-  }                        
+  if (intersects.length > 0){
+    console.log("Console")
+  }
 }
 
 function createScene(canvas) {
@@ -609,9 +621,9 @@ function createScene(canvas) {
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
 
-  pointLight = new THREE.PointLight(0xffe28e, 1, 100);
-  pointLight2 = new THREE.PointLight(0xffe28e, 1, 100);
-  pointLight3 = new THREE.PointLight(0xffe28e, 1, 100);
+  pointLight = new THREE.PointLight(0xffe28e, 1, 50);
+  pointLight2 = new THREE.PointLight(0xffe28e, 1, 50);
+  pointLight3 = new THREE.PointLight(0xffe28e, 1, 50);
 
   pointLight.position.set(0, 5, 0);
   pointLight2.position.set(0, 5, 0);
@@ -663,8 +675,6 @@ function createScene(canvas) {
   loadObjLightBulb(objLight, objectList);
   loadObjImperial(objImperial, objectList);
   loadRoom(objRoom, objectList);
-
-
 
   // Furniture
   //loadObjDesk(objDesk, objectList);
