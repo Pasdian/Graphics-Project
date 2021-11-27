@@ -568,12 +568,17 @@ function update() {
 }
 
 function onMouseDown(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  mouse.x = (event.clientX / 1920) * 2 - 1;
+  mouse.y = -(event.clientY / 1080) * 2 + 1;
   console.log("Mouse Down");
 
   raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(root, true);
+  console.log(intersects);
+  console.log(root);
 
+
+/*
     for (let i = 0; i < root.length-1; i++) {
     if (raycaster.intersectObject(root[i]) != null) {
       console.log[root[1]]
@@ -583,6 +588,7 @@ function onMouseDown(event) {
       
       
     }
+    
     
   }
  /*  var intersects = raycaster.intersectObjects(root, true);
@@ -686,16 +692,16 @@ function createScene(canvas) {
   ////////////////////////////////////////////////////////
 
   loadObjTardis(objTardis, objectList);
-  loadObjDelorean(objDelorean, objectList);
-  loadObjRing(objRing, objectList);
+  //loadObjDelorean(objDelorean, objectList);
+  //loadObjRing(objRing, objectList);
 
-  loadObjLight(objLightSaber, objectList);
-  loadObjHammer(objHammer, objectList);
-  loadObjBox(objBox, objectList);
+  //loadObjLight(objLightSaber, objectList);
+  //loadObjHammer(objHammer, objectList);
+  //loadObjBox(objBox, objectList);
 
-  loadObjBike(objBike, objectList);
-  loadObjLightBulb(objLight, objectList);
-  loadObjImperial(objImperial, objectList);
+  // loadObjBike(objBike, objectList);
+  // loadObjLightBulb(objLight, objectList);
+  // loadObjImperial(objImperial, objectList);
   loadRoom(objRoom, objectList);
 
   // Furniture
