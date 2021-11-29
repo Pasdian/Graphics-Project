@@ -296,8 +296,9 @@ async function loadObjHammer(objModelUrl, objectList) {
     object.position.x += 3.6;
     object.position.y += 1.4;
     object.position.z += 3;
-    object.rotation.x = -3;
-    object.scale.set(3.01, 3.01, 3.01);
+    object.rotation.y = 3;
+    
+    object.scale.set(0.11, 0.11, 0.11);
 
     objectList.push(object);
     object.name = "hammer"
@@ -696,7 +697,7 @@ function createScene(canvas) {
   //loadObjRing(objRing, objectList);
 
   //loadObjLight(objLightSaber, objectList);
-  //loadObjHammer(objHammer, objectList);
+  loadObjHammer(objHammer, objectList);
   //loadObjBox(objBox, objectList);
 
   // loadObjBike(objBike, objectList);
