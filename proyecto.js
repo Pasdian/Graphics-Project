@@ -627,6 +627,14 @@ function animateTardis() {
 }
 function animateTieFighter() {
   console.log("inside TIE Function");
+  const sound = new THREE.Audio( listener );
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load( "/assets/Sounds/tieFighter.mp3", function( buffer ) {
+    sound.setBuffer( buffer );
+    sound.setLoop( true );
+    sound.setVolume( 0.3 );
+    sound.play();
+  });
 }
 function animateTrident() {
   console.log("inside Trident Function");
