@@ -20,6 +20,9 @@ let directionalLight = null,
   pointLight2 = null,
   pointLight3 = null;
 
+let clickedObj = null;
+let intersects = [];
+
 let mapUrl = "../imagenes/checker_large.gif";
 
 let SHADOW_MAP_WIDTH = 4096,
@@ -127,7 +130,7 @@ async function loadObjTardis(objModelUrl, objectList) {
     object.scale.set(0.15, 0.15, 0.15);
 
     objectList.push(object);
-    object.name = "tardis"
+    object.name = "tardis";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -170,7 +173,7 @@ async function loadObjDelorean(objModelUrl, objectList) {
     object.scale.set(0.005, 0.005, 0.005);
 
     objectList.push(object);
-    object.name = "delorean"
+    object.name = "delorean";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -213,7 +216,7 @@ async function loadObjRing(objModelUrl, objectList) {
     object.scale.set(0.2, 0.2, 0.2);
 
     objectList.push(object);
-    object.name = "ring"
+    object.name = "ring";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -256,7 +259,7 @@ async function loadObjLight(objModelUrl, objectList) {
     object.scale.set(0.003, 0.003, 0.003);
 
     objectList.push(object);
-    object.name = "lightsaber"
+    object.name = "lightsaber";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -297,11 +300,11 @@ async function loadObjHammer(objModelUrl, objectList) {
     object.position.y += 1.4;
     object.position.z += 3;
     object.rotation.y = 3;
-    
+
     object.scale.set(0.11, 0.11, 0.11);
 
     objectList.push(object);
-    object.name = "hammer"
+    object.name = "hammer";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -345,7 +348,7 @@ async function loadObjBox(objModelUrl, objectList) {
     object.scale.set(0.7, 0.7, 0.7);
 
     objectList.push(object);
-    object.name = "trident"
+    object.name = "trident";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -389,7 +392,7 @@ async function loadObjBike(objModelUrl, objectList) {
     object.scale.set(0.1, 0.1, 0.1);
 
     objectList.push(object);
-    object.name = "tron"
+    object.name = "tron";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -428,7 +431,7 @@ async function loadRoom(objModelUrl, objectList) {
 
     object.position.set(0, 0, 0);
     object.scale.set(1.0, 1.0, 1.0);
-    object.name = "room"
+    object.name = "room";
     objectList.push(object);
     scene.add(object);
   } catch (err) {
@@ -469,7 +472,7 @@ async function loadObjLightBulb(objModelUrl, objectList) {
     object.scale.set(0.001, 0.001, 0.001);
 
     objectList.push(object);
-    object.name = "lightbulb"
+    object.name = "lightbulb";
     root.push(object);
     scene.add(object);
   } catch (err) {
@@ -512,7 +515,7 @@ async function loadObjImperial(objModelUrl, objectList) {
     objectList.push(object);
 
     scene.add(object);
-    object.name = "tieFighter"
+    object.name = "tieFighter";
     root.push(object);
   } catch (err) {
     onError(err);
@@ -574,33 +577,68 @@ function onMouseDown(event) {
   console.log("Mouse Down");
 
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObjects(root, true);
+  intersects = raycaster.intersectObjects(root, true);
   console.log(intersects);
-  console.log(root);
 
+  clickedObj = intersects.at(-1);
+  console.log(clickedObj);
+  var name = clickedObj.object.parent.name;
+  console.log(name);
 
-/*
-    for (let i = 0; i < root.length-1; i++) {
-    if (raycaster.intersectObject(root[i]) != null) {
-      console.log[root[1]]
-      console.log("Specific object pressed")
-      console.log(root)
-      console.log(i)
-      
-      
-    }
-    
-    
+  switch (name) {
+    case "tardis":
+      animateTardis();
+      break;
+    case "hammer":
+      animateHammer();
+      break;
+    case "delorean":
+      anmiateDelorean();
+      break;
+    case "lightsaber":
+      anmiateLightSaber();
+      break;
+    case "ring":
+      animateRing();
+      break;
+    case "tieFighter":
+      animateTieFighter();
+      break;
+    case "trident":
+      animateTrident();
+      break;
+    case "tron":
+      animateTron();
+      break;
+
+    default:
+      console.log("OBJECT NOT FOUND");
   }
- /*  var intersects = raycaster.intersectObjects(root, true);
-  console.log("Intersects Children");
-  console.log(intersects);
-  console.log("INTERSECTS");
-  console.log(intersects.length);
+}
 
-  if (intersects.length > 0){
-    console.log("Console")
-  } */
+function animateHammer() {
+  console.log("inside Hammer Function");
+}
+function animateRing() {
+  console.log("inside Ring Function");
+}
+function animateTardis() {
+  console.log("inside Tardis Function");
+}
+function animateTieFighter() {
+  console.log("inside TIE Function");
+}
+function animateTrident() {
+  console.log("inside Trident Function");
+}
+function animateTron() {
+  console.log("inside Tron Function");
+}
+function anmiateDelorean() {
+  console.log("inside Delorean Function");
+}
+function anmiateLightSaber() {
+  console.log("inside LightSaber Function");
 }
 
 function createScene(canvas) {
@@ -628,21 +666,20 @@ function createScene(canvas) {
   );
   camera.position.set(-2, 6, 12);
   camera.add(listener);
-  const sound = new THREE.Audio( listener );
+  /* const sound = new THREE.Audio( listener );
   const audioLoader = new THREE.AudioLoader();
   audioLoader.load( "/assets/Sounds/music2.mp3", function( buffer ) {
     sound.setBuffer( buffer );
     sound.setLoop( true );
-    sound.setVolume( 0.5 );
+    sound.setVolume( 0.1 );
     sound.play();
-  });
-
+  }); */
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
 
-  pointLight = new THREE.PointLight(0xffffff, .6, 100);
-  pointLight2 = new THREE.PointLight(0xffffff, .6, 100);
-  pointLight3 = new THREE.PointLight(0xffffff, .6, 100);
+  pointLight = new THREE.PointLight(0xffffff, 0.6, 100);
+  pointLight2 = new THREE.PointLight(0xffffff, 0.6, 100);
+  pointLight3 = new THREE.PointLight(0xffffff, 0.6, 100);
 
   pointLight.position.set(0, 4, 3);
   pointLight2.position.set(0, 4, 0);
@@ -660,7 +697,7 @@ function createScene(canvas) {
   scene.add(pointLight);
   scene.add(pointLight2);
   scene.add(pointLight3);
-/* 
+  /* 
   // Add a directional light to show off the object
   directionalLight = new THREE.DirectionalLight(0xaaaaaa, 1);
 
@@ -685,24 +722,24 @@ function createScene(canvas) {
   spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
   */
 
-  ambientLight = new THREE.AmbientLight(0xffffff, .1);
-  scene.add(ambientLight); 
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+  scene.add(ambientLight);
 
   /////////////////////////////////////////////////////////
   //Mis modelos
   ////////////////////////////////////////////////////////
 
   loadObjTardis(objTardis, objectList);
-  //loadObjDelorean(objDelorean, objectList);
-  //loadObjRing(objRing, objectList);
+  loadObjDelorean(objDelorean, objectList);
+  loadObjRing(objRing, objectList);
 
-  //loadObjLight(objLightSaber, objectList);
+  loadObjLight(objLightSaber, objectList);
   loadObjHammer(objHammer, objectList);
-  //loadObjBox(objBox, objectList);
+  loadObjBox(objBox, objectList);
 
   // loadObjBike(objBike, objectList);
-  // loadObjLightBulb(objLight, objectList);
-  // loadObjImperial(objImperial, objectList);
+  loadObjLightBulb(objLight, objectList);
+  loadObjImperial(objImperial, objectList);
   loadRoom(objRoom, objectList);
 
   // Furniture
