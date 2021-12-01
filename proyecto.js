@@ -10,15 +10,16 @@ let renderer = null,
   objectList = [],
   orbitControls = null;
 
-let duration = 20000; // ms
 let currentTime = Date.now();
 
 let directionalLight = null,
-  spotLight = null,
-  ambientLight = null,
   pointLight = null,
+  ambientLight = null,
   pointLight2 = null,
-  pointLight3 = null;
+  pointLight3 = null,
+  duration = 10000,
+  loopAnimation = false,
+  animator = null;
 
 let clickedObj = null;
 let intersects = [];
@@ -75,6 +76,8 @@ const listener = new THREE.AudioListener();
 function main() {
   const canvas = document.getElementById("webglcanvas");
 
+  
+
   createScene(canvas);
 
   initControls();
@@ -121,7 +124,7 @@ async function loadObjTardis(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -163,7 +166,7 @@ async function loadObjDelorean(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -206,7 +209,7 @@ async function loadObjRing(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -249,7 +252,7 @@ async function loadObjLight(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -292,7 +295,7 @@ async function loadObjHammer(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -337,7 +340,7 @@ async function loadObjBox(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -424,7 +427,7 @@ async function loadRoom(objModelUrl, objectList) {
 
     object.traverse(function (child) {
       if (child.isMesh) {
-        child.castShadow = true;
+        child.castShadow = false;
         child.receiveShadow = true;
       }
     });
@@ -432,7 +435,7 @@ async function loadRoom(objModelUrl, objectList) {
     object.position.set(0, 0, 0);
     object.scale.set(1.0, 1.0, 1.0);
     object.name = "room";
-    objectList.push(object);
+    // objectList.push(object);
     scene.add(object);
   } catch (err) {
     onError(err);
@@ -464,14 +467,14 @@ async function loadObjLightBulb(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
     object.position.set(0, 5, 0);
     object.scale.set(0.001, 0.001, 0.001);
 
-    objectList.push(object);
+    // objectList.push(object);
     object.name = "lightbulb";
     root.push(object);
     scene.add(object);
@@ -505,7 +508,7 @@ async function loadObjImperial(objModelUrl, objectList) {
     object.traverse(function (child) {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
+        child.receiveShadow = false;
       }
     });
 
@@ -534,10 +537,10 @@ function initControls() {
       directionalLight.color.set(event.target.value);
     });
   document.querySelector("#spotLight").addEventListener("change", (event) => {
-    spotLight.color.set(event.target.value);
+    pointLight.color.set(event.target.value);
   });
   document.querySelector("#spotLight").addEventListener("input", (event) => {
-    spotLight.color.set(event.target.value);
+    pointLight.color.set(event.target.value);
   });
   document
     .querySelector("#ambientLight")
@@ -550,10 +553,18 @@ function initControls() {
   window.addEventListener("pointerdown", onMouseDown, false);
 }
 
-function animate() {
+function animate(name) {
   let now = Date.now();
   let deltat = now - currentTime;
   currentTime = now;
+  let fract = deltat / duration;
+  let angle = Math.PI * fract;
+
+  
+
+  for(const object of objectList)
+      if(object.name == name)
+          object.rotation.y += angle / 2;
 }
 
 function update() {
@@ -563,9 +574,6 @@ function update() {
 
   // Render the scene
   renderer.render(scene, camera);
-
-  // Spin the cube for next frame
-  animate();
 
   // Update the camera controller
   orbitControls.update();
@@ -579,6 +587,8 @@ function onMouseDown(event) {
   raycaster.setFromCamera(mouse, camera);
   intersects = raycaster.intersectObjects(root, true);
   console.log(intersects);
+  console.log("OBJECT LIST");
+  console.log(objectList[1].name)
 
   clickedObj = intersects.at(-1);
   console.log(clickedObj);
@@ -587,28 +597,28 @@ function onMouseDown(event) {
 
   switch (name) {
     case "tardis":
-      animateTardis();
+      animateTardis(name);
       break;
     case "hammer":
-      animateHammer();
+      animateHammer(name);
       break;
     case "delorean":
-      anmiateDelorean();
+      anmiateDelorean(name);
       break;
     case "lightsaber":
-      anmiateLightSaber();
+      anmiateLightSaber(name);
       break;
     case "ring":
-      animateRing();
+      animateRing(name);
       break;
     case "tieFighter":
-      animateTieFighter();
+      animateTieFighter(name);
       break;
     case "trident":
-      animateTrident();
+      animateTrident(name);
       break;
     case "tron":
-      animateTron();
+      animateTron(name);
       break;
 
     default:
@@ -616,37 +626,40 @@ function onMouseDown(event) {
   }
 }
 
-function animateHammer() {
+function animateHammer(name) {
   console.log("inside Hammer Function");
+  animate(name)
 }
-function animateRing() {
+function animateRing(name) {
   console.log("inside Ring Function");
+  animate(name)
 }
-function animateTardis() {
+function animateTardis(name) {
   console.log("inside Tardis Function");
+  animate(name)
 }
-function animateTieFighter() {
+function animateTieFighter(name) {
   console.log("inside TIE Function");
-  const sound = new THREE.Audio( listener );
+animate(name)
+  const sound = new THREE.Audio(listener);
   const audioLoader = new THREE.AudioLoader();
-  audioLoader.load( "/assets/Sounds/tieFighter.mp3", function( buffer ) {
-    sound.setBuffer( buffer );
-    sound.setLoop( true );
-    sound.setVolume( 0.3 );
+  audioLoader.load("/assets/Sounds/tieFighter.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
     sound.play();
   });
 }
-function animateTrident() {
-  console.log("inside Trident Function");
+function animateTrident(name) {
+  console.log("inside Trident Function");animate(name)
 }
-function animateTron() {
-  console.log("inside Tron Function");
+function animateTron(name) {
+  console.log("inside Tron Function");animate(name)
 }
-function anmiateDelorean() {
-  console.log("inside Delorean Function");
+function anmiateDelorean(name) {
+  console.log("inside Delorean Function");animate(name)
 }
-function anmiateLightSaber() {
-  console.log("inside LightSaber Function");
+function anmiateLightSaber(name) {
+  console.log("inside LightSaber Function");animate(name)
 }
 
 function createScene(canvas) {
@@ -685,13 +698,25 @@ function createScene(canvas) {
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
 
-  pointLight = new THREE.PointLight(0xffffff, 0.6, 100);
-  pointLight2 = new THREE.PointLight(0xffffff, 0.6, 100);
-  pointLight3 = new THREE.PointLight(0xffffff, 0.6, 100);
+  pointLight = new THREE.PointLight(0xffffff, 0.4, 100);
+  pointLight2 = new THREE.PointLight(0xffffff, 0.8, 100);
+  pointLight3 = new THREE.PointLight(0xffffff, 0.4, 100);
 
   pointLight.position.set(0, 4, 3);
   pointLight2.position.set(0, 4, 0);
   pointLight3.position.set(0, 4, -3);
+
+  pointLight.castShadow = true;
+
+  pointLight.shadow.camera.fov = 45;
+
+  pointLight2.castShadow = true;
+
+  pointLight2.shadow.camera.fov = 90;
+
+  pointLight3.castShadow = true;
+
+  pointLight3.shadow.camera.fov = 45;
 
   pointLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
   pointLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
@@ -705,6 +730,7 @@ function createScene(canvas) {
   scene.add(pointLight);
   scene.add(pointLight2);
   scene.add(pointLight3);
+
   /* 
   // Add a directional light to show off the object
   directionalLight = new THREE.DirectionalLight(0xaaaaaa, 1);
