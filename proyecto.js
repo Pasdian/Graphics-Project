@@ -629,6 +629,14 @@ function onMouseDown(event) {
 function animateHammer(name) {
   console.log("inside Hammer Function");
   animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/thunder.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
 }
 function animateRing(name) {
   console.log("inside Ring Function");
@@ -671,10 +679,20 @@ function animateTieFighter(name) {
   });
 }
 function animateTrident(name) {
-  console.log("inside Trident Function");animate(name)
+  console.log("inside Trident Function");
+  animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/beach.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
 }
 function animateTron(name) {
-  console.log("inside Tron Function");animate(name)
+  console.log("inside Tron Function");
+  animate(name)
 }
 function anmiateDelorean(name) {
   console.log("inside Delorean Function");
@@ -690,7 +708,16 @@ function anmiateDelorean(name) {
   });
 }
 function anmiateLightSaber(name) {
-  console.log("inside LightSaber Function");animate(name)
+  console.log("inside LightSaber Function");
+  animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/lightsaber.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
 }
 
 function createScene(canvas) {
