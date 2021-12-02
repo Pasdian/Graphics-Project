@@ -632,15 +632,36 @@ function animateHammer(name) {
 }
 function animateRing(name) {
   console.log("inside Ring Function");
+
   animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/myPrecious.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
+
 }
 function animateTardis(name) {
   console.log("inside Tardis Function");
+
   animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/tardisSound.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
 }
 function animateTieFighter(name) {
   console.log("inside TIE Function");
-animate(name)
+
+  animate(name)
+
   const sound = new THREE.Audio(listener);
   const audioLoader = new THREE.AudioLoader();
   audioLoader.load("/assets/Sounds/tieFighter.mp3", function (buffer) {
@@ -656,7 +677,17 @@ function animateTron(name) {
   console.log("inside Tron Function");animate(name)
 }
 function anmiateDelorean(name) {
-  console.log("inside Delorean Function");animate(name)
+  console.log("inside Delorean Function");
+  
+  animate(name)
+
+  const sound = new THREE.Audio(listener);
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/assets/Sounds/carEngine.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setVolume(0.3);
+    sound.play();
+  });
 }
 function anmiateLightSaber(name) {
   console.log("inside LightSaber Function");animate(name)
